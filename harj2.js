@@ -257,25 +257,24 @@ console.log(evens)
 Sinulla on [{“ma”:44}, {“pe”:100}, {“ke”:21}, {“ti”: 66},{”la”:22}]. Luo taulukko, jossa on
 mukana objektit, joiden avaimen toinen kirjain on e.*/
 
-var days = [
-    {key:"ma",value:44},
-    {key:"pe",value:100},
-    {key:"ke",value:21},
-    {key:"ti",value:66},
-    {key:"la",value:22}
+const daysC = [
+    {"ma":44},
+    {"pe":100},
+    {"ke":21},
+    {"ti":66},
+    {"la":22}
 ]
 
 let regExp = /e/;
-const daysE = []
+const daysWithE = []
 
-days.forEach(day => {
-    let str = day.key
-    let match = regExp.test(str.charAt(1))
-    if(match) { daysE.push(day) } else {return}
-});
+for(i=0;i<daysC.length;i++) {
+    let match = regExp.test(Object.keys(daysC[i]).toString().charAt(1))
+    if(match) { daysWithE.push(daysC[i]) }
+}
 
 console.log("2.12 päivät joiden toinen kirjain E: ")
-console.log(daysE)
+console.log(daysWithE)
 
 /*Tehtävä 2.13
 Sinulla on {“ma”:44, “pe”:100, “ke”:21, “ti”: 66,”la”:22}. Tee ohjelma, joka muuttaa objektin
