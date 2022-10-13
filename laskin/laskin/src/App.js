@@ -2,6 +2,10 @@ import './App.css';
 import {useState} from "react"
 import Button from './Button';
 
+//tässä ei nyt vielä ole oikein minkäänlaista tyylimuotoilua
+
+
+
 let buttons = ["7","8","9","/","4","5","6","*","1","2","3","-","0",".","+","=","C","<"]
 const operators = ["+","-","*","/"]
 
