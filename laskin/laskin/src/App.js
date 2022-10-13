@@ -12,7 +12,6 @@ const operators = ["+","-","*","/"]
 function App() {
   const [text,setText] =useState("")
   const buttonPressed =(x)=>{
-     console.log(text)
     if (x==="=") {setText(eval(text)); return}
     if (x==="C") {setText(""); return}
     if (x==="<") {setText(text.slice(0,-1)); return}
