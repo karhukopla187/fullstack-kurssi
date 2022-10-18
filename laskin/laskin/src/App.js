@@ -18,12 +18,13 @@ function App() {
     //if (!Number.isFinite(text.slice(-1)) && operators.indexOf(x)>=0)
       //{setText(text.slice(0,-1)+x); return}
     if (text==="" && x==="*" || text==="" && x==="/") {setText(""); return}
+    //if (text.slice(-1) ==="." && x===".")
     setText(text+x)
   }
   return (
-    <div>
+    <div id="container">
       <p>{text}</p>
-      {buttons.map((button,index)=><Button key={index} buttonPressed={buttonPressed} button={button}/>)}
+      <h1>{buttons.map((button,index)=><Button key={index} buttonPressed={buttonPressed} button={button}/>)}</h1>
     </div>
   );
 }

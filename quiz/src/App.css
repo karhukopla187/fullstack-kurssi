@@ -36,14 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-header {
-  width: 20em;
-  background-color: rgb(121, 116, 91);
-}
-
-#container {
-  width: 10em;
-  background-color: #282c34;
-}
