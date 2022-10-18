@@ -1,6 +1,7 @@
 import './App.css';
 import Question from './Question';
 import Quiz from './Quiz'
+import Option from './Option'
 import { useState,useReducer } from "react"
 
 
@@ -20,13 +21,13 @@ let option43 = {option:"l"}
 let q1 = {question:"a?",
             options:[option11,option12,option13]}
 
-let q2 = {question:"b?",
+let q2 = {question:"d?",
             options:[option21,option22,option23]}
 
-let q3 = {question:"c?",
+let q3 = {question:"g?",
             options:[option31,option32,option33]}
 
-let q4 = {question:"d?",
+let q4 = {question:"j?",
             options:[option41,option42,option43]}
 
 let quiz1 = {name:"Quiz 1",
@@ -60,7 +61,7 @@ function reducer(state,action) {
 function App() {
 
   const[quizNum,setQuiz] = useState(0)
-  const [quiz, dispatch] = useReducer(reducer, quiz1);
+  const [quiz1, dispatch] = useReducer(reducer, quiz1);
 
   return (
     <div className="App">
@@ -68,7 +69,7 @@ function App() {
         <button onClick = {()=>setQuiz(0)}>{quiz1.name}</button>
         <button onClick = {()=>setQuiz(1)}>{quiz2.name}</button>
       </div>
-      <div>
+    <div>
         
         <Quiz quiz = {quizzes[quizNum]} dispatch={dispatch}/>
 
