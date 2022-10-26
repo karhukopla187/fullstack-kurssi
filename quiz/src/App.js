@@ -32,6 +32,8 @@ let appData = {
 
 //let quizzes = { quizList: [quiz1, quiz2] }
 
+const [appD, dispatch] = useReducer(reducer, appData);
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -61,9 +63,9 @@ function reducer(state, action) {
 
     case 'ADD_QUESTION': {
       console.log("kysymys lisätty", action)
-      const copy = { ...state }
-      copy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({ q:"uusi kysymys",a:["uv1","uv2","uv3"] })
-      return copy
+      const stateCopy = { ...state }
+      stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({ q:"uusi kysymys",a:["uv1","uv2","uv3"] })
+      return stateCopy
     }
 
     case 'ADD_QUIZ_COLLECTION': {
@@ -83,11 +85,10 @@ function reducer(state, action) {
   }
 }
 
-const [appD, dispatch] = useReducer(reducer, appData);
 
 useEffect(() => {
-  let quizdata = localStorage.getItem('quizdata');
-  if (quizdata == null) {
+  const quizData = localStorage.getItem('quizdata');
+  if (quizData == null) {
     console.log("Data luettiin vakiosta")
     localStorage.setItem('quizdata', JSON.stringify(appData));
     dispatch({ type: "INITIALIZE", payload: appData })
@@ -95,10 +96,36 @@ useEffect(() => {
   } else {
     console.log("Data luettiin local storagesta")
 
-    dispatch({ type: "INITIALIZE", payload: (JSON.parse(quizdata)) })
+    dispatch({ type: "INITIALIZE", payload: (JSON.parse(quizData)) })
   }
 
 }, []);
+
+/*
+function timeAlert(){
+	clearTimeout(timer)
+	setTimer(setTimeout(fuction(){ alert("alert"); }, 10000));
+}
+
+function stopTimer() {
+	console.log("stop")
+	clearTimeout(timer)
+}
+
+useEffect(() => {
+	console.log("muutos")
+	timeAlert()
+},  [appD]
+
+//timer
+useEffect(() => {
+  if (quizData == null) {
+    console.log("muutos")
+    timeAlert()
+  }
+},[appD])
+*/
+
 
 useEffect(() => {
 

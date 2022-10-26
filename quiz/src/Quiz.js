@@ -6,8 +6,14 @@ const Quiz = (props) => {
     <div>
       <div> {props.quiz.name} </div>
 
-      <input type="text" onChange={(event)=>{ 
-        props.dispatch({type:"QUIZ_NAME_CHANGED",payload:event.target.value})}}  
+      <input type="text" onChange={(event)=>
+      {props.dispatch({type:"QUIZ_NAME_CHANGED",
+        payload:{
+          name:event.target.value,
+          questionIndex:props.questionIndex,
+          quizCollectionIndex:props.quizCollectionIndex,
+          quizIndex:props.quizIndex}
+        })}}  
         value = {props.quiz.name}/>
 
       <div> {props.quiz.questions.map((question,index) => <Question dispatch={props.dispatch}

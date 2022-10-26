@@ -14,7 +14,8 @@ const Question = (props) => {
           questionIndex:props.questionIndex,
           quizCollectionIndex:props.quizCollectionIndex,
           quizIndex:props.quizIndex}
-          })}}  value = {props.question.q}/>
+          })}}  
+          value = {props.question.q}/>
       
       </div>
         {props.question.a.map(answer => 
