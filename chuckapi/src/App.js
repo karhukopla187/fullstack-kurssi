@@ -2,17 +2,15 @@ import './App.css';
 import { useState, useReducer, useEffect } from "react"
 import axios from 'axios'
 
-//const jokes = []
-
 let appState = {
   joke: "",
   jokes: [],
   fetching: false,
   fetchFailed: false,
   save: false,
-  dataInitialized: false
+  dataInitialized: false,
+  timerOn:true
 }
-
 
 function reducer(state, action) {
   switch (action.type) {
@@ -36,32 +34,9 @@ function reducer(state, action) {
   }
 }
 
-//vitsin automaattihaku
-function fetch() {
-  dispatch({type:'FETCH'})
-  dispatch({type:'FETCHED'})
-}
-
-function fetchJoke() {
-  setInterval(fetch,10000)
-}
-
-function App() {
+const App = () => {
 
   const [appData, dispatch] = useReducer(reducer, appState)
-
-//localstorage viritelmä
-  useEffect(() => {
-    const jokeData = localStorage.getItem('data');
-    if ( jokeData== null) {
-      console.log("storagessa ei mitään")
-      localStorage.setItem('data', JSON.stringify(appState));
-      dispatch({ type: "INITIALIZE", payload: appState })
-    } else {
-      console.log("local storage")
-      dispatch({ type: "INITIALIZE", payload: (JSON.parse(jokeData)) })
-    }
-  }, []);
 
   useEffect(() => {
     async function getData() {
@@ -78,13 +53,26 @@ function App() {
     getData()
   }, [])
 
+  useEffect(() => {
+      let timer
+      if (appData.timerOn) {
+        timer = setInterval(async()=>{
+          try {
+            let result = await axios('https://api.chucknorris.io/jokes/random')
+            dispatch({ type: 'FETCHED', payload: result.data.value })
+          }
+          catch (error) {
+            console.log("error")
+          }
+        },10000)
+      }
+      return()=>clearTimeout(timer)
+    },[appData.timerOn]
+  )
+
   return (
     <div>
-      <button onClick={() => dispatch({ type: 'FETCH' })}>Hae uusi vitsi</button>
-      <div>{appData.joke.toString()}
-      <div>{fetchJoke()}</div>
-
-      </div>
+      <div>{appData.joke}</div>
     </div>
   )
 }
