@@ -12,7 +12,7 @@ app.use(express.json());
 tulipa vasta tässä commitin aikana mieleen että varmaankin
 oli ajatuksena käyttöliittymän kautta iskeä nämä tiedot,
 elikkäs tyyliin kirjoitetaan käyttäjätiedot sisään ja vertaillaan admin-tietoihin
-Koitin tässä vielä lätkiä kasaan tuommoista tuonne Appiin ja muualle mutta tässä on nyt tämmöinen tarkistus
+Koitin tässä vielä lätkiä kasaan tuommoista tuonne Appiin ja muualle mutta tässä on nyt tämmöinen raakile tarkistus
 */
 const adminCredentials = {
   id: "paroni",
@@ -40,13 +40,14 @@ app.get('/', async (req, res) => {
     console.log("Palvelimeen tultiin kyselemään dataa")
     //readFile ja writeFile vissiin itsessään asynkroninen vs readFileSync
     const data = await fs.readFile('./kouludata.json', { encoding: 'utf8', flag: 'r' }); //Voi kestää useita sekunteja!
+    res.send(data)
     
     //haetaan admin-tiedot
-    const adminData = await fs.readFile('./admindata.json',{ encoding: 'utf8', flag: 'r' });
-    //res.send(admindata)
-    adminCreds.push(adminData)
-
-    res.send(data)
+    if (adminCreds[0] == null) {
+      const adminData = await fs.readFile('./admindata.json',{ encoding: 'utf8', flag: 'r' });
+      //res.send(admindata)
+      adminCreds.push(adminData)
+    }
   } catch {
     console.error(err)
   }
