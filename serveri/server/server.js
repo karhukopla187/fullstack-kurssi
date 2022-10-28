@@ -23,13 +23,13 @@ const adminCredentials = {
 //tänne tiedot admindata.jsonista
 const adminCreds = []
 
-const user = {
+const user1 = {
   id: "prole",
   pass: "parasSalasana123",
   type: "user"
 
 }
-const admin = {
+const user2 = {
   id: "paroni",
   pass: "password",
   type: "admin"
@@ -54,7 +54,7 @@ app.get('/', async (req, res) => {
 
 //käyttäjästatuksen tarkistus
 //if (admin.type === adminCreds[0].type)
-if (admin.type === adminCredentials.type && admin.pass === adminCredentials.pass) {
+if (user2.type === adminCredentials.type && user2.pass === adminCredentials.pass) {
   app.post('/', async (req, res) => {
     try  {
       console.log("Palvelimeen tultiin tallentelemaan dataa")
