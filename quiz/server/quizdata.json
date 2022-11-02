@@ -1,0 +1,17 @@
+{
+    "quizzes":{
+        "quizlist":[
+            {
+                "name": "Kysely 1",
+                "id":1,
+                "active":true,
+                "date":"11.10.2022",
+                "questionsAmount": 2,
+                "questions": [
+                    { "q": "Kysymys 1", "a": ["vastaus 1", "vastaus 2", "vastaus 3"] },
+                    { "q": "Kysymys 2", "a": ["vastaus 4", "vastaus 5", "vastaus 6"] }
+                ]
+            }
+        ]
+    }
+}
