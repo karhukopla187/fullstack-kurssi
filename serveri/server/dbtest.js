@@ -31,6 +31,9 @@ const getOne = {
   text: 'SELECT * FROM quizzes WHERE id = ($1)',
   values: [1]
 }
+const getAlphabetically = {  
+  text: 'SELECT * FROM quizzes ORDER BY name ASC',
+}
 const getMultiple = {
   text: 'SELECT * FROM quizzes WHERE id IN ($1, $2, $3)',
   values: [1,2,3]
@@ -46,12 +49,16 @@ const getActive = {
 
 
 const addQuiz = async () => {
+  let text = 'INSERT INTO quizzes (name) VALUES ($1)'
+  let values = ['Uusi tentti']
   try {
-    let res = await pool.query(add)
+    let res = await pool.query(text,values)
     console.log("lisättiin tentti")
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
+
 }
 
 const removeQuiz = async () => {
@@ -61,6 +68,7 @@ const removeQuiz = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const changeQuizName = async () => {
@@ -70,6 +78,7 @@ const changeQuizName = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getQuizzes = async () => {
@@ -79,6 +88,7 @@ const getQuizzes = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getQuizByID = async () => {
@@ -88,6 +98,7 @@ const getQuizByID = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getQuizzesAlphabetically = async () => {
@@ -101,6 +112,7 @@ const getQuizzesAlphabetically = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getQuizzesByIDs = async () => {
@@ -110,6 +122,7 @@ const getQuizzesByIDs = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getQuizBeforeDate = async () => {
@@ -119,6 +132,7 @@ const getQuizBeforeDate = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 const getActiveQuiz = async () => {
@@ -129,6 +143,7 @@ const getActiveQuiz = async () => {
   } catch (error) {
     console.log("err",error)
   }
+  pool.end()
 }
 
 addQuiz()
