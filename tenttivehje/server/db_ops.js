@@ -10,74 +10,196 @@ const pool = new Pool({
 })
 
 
-const getQuizzes = async () => {
-    let data = 'SELECT * FROM quiz'
+//TENTIT
+
+exports.getQuizzes = async () => {
     try {
-        let res = await pool.query(data)
+        let res = await pool.query('SELECT * FROM quiz')
         console.log("haettiin tentit")
         return res
     } catch (error) {
         console.log("err", error)
     }
-    pool.end()
 }
 
-const addQuiz = async () => {
-    let text = 'INSERT INTO quizzes (name) VALUES ($1)'
-    let values = ['Uusi tentti']
+exports.getQuiz = async (id) => {
     try {
-        let res = await pool.query(text, values)
+        let res = await pool.query('SELECT FROM quiz WHERE id ($1)', id)
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.createQuiz = async (id) => {
+    try {
+        let res = await pool.query('INSERT INTO quiz (name) VALUES ($1) WHERE id ($1)', id)
         console.log("lisättiin tentti")
     } catch (error) {
         console.log("err", error)
     }
-    pool.end()
 }
 
-const deleteQuiz = async () => {
-
-}
-
-const editQuizName = async () => {
-
-}
-
-
-
-const getUser = async () => {
-    let data = 'SELECT '
+exports.deleteQuiz = async (id) => {
     try {
-        let res = await pool.query(data)
-        console.log("haettiin tentit")
-        //return res
+        let res = await pool.query('DELETE FROM quiz WHERE id ($1)', id)
+        console.log("poistettiin tentti")
     } catch (error) {
         console.log("err", error)
     }
-    pool.end()
 }
 
-const getQuestion = async () => {
-    let data = ''
+exports.updateQuiz = async (values) => {
     try {
-        let res = await pool.query(data)
+        let res = await pool.query('UPDATE quiz SET name ($1) WHERE id ($2)', values)
+        console.log("päivitettiin tentti")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+
+
+//KÄYTTÄJÄ
+
+exports.getUser = async (id) => {
+    try {
+        let res = await pool.query('SELECT FROM user WHERE id ($1)', id)
+        console.log("haettiin käyttäjä")
+        return res
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+
+//TULOKSET
+
+exports.getResults = async () => {
+    try {
+        let res = await pool.query('SELECT * FROM result')
+        console.log("haettiin käyttäjän tulokset")
+        return res
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.getResult = async (id) => {
+    try {
+        let res = await pool.query('SELECT FROM result WHERE id ($1)', id)
+        console.log("haettiin tulokset")
+        return res
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.deleteResult = async (id) => {
+    try {
+        let res = await pool.query('DELETE FROM result WHERE id ($1)', id)
+        console.log("poistettiin tulos")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+
+//KYSYMYKSET
+
+exports.getQuestions = async (quizId) => {
+    try {
+        let res = await pool.query('SELECT * FROM question WHERE quiz_id ($1)', quizId)
+        console.log("haettiin kysymykset")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.addQuestion = async (values) => {
+    try {
+        let res = await pool.query('INSERT INTO question (text) VALUES ($1) WHERE id ($2)', values)
+        console.log("lisättiin kysymys")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.deleteQuestion = async (id) => {
+    try {
+        let res = await pool.query('DELETE FROM question WHERE id ($1)', id)
+        console.log("poistettiin tentti")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+exports.updateQuestion = async (values) => {
+    try {
+        let res = await pool.query('INSERT INTO question (text) VALUES ($1) WHERE id ($2)', values)
+        console.log("lisättiin tentti")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+
+//VASTAUSVAIHTOEHDOT
+
+exports.getOptions = async (id) => {
+    try {
+        let res = await pool.query('SELECT * FROM option WHERE question_id ($1)', id)
         console.log("haettiin kysymys")
     } catch (error) {
         console.log("err", error)
     }
-    pool.end()
 }
 
-const addQuestion = async () => {
-
+exports.addOption = async (values) => {
+    try {
+        let res = await pool.query('INSERT INTO option (text) VALUES ($1)', values)
+        console.log("lisättiin kysymys")
+    } catch (error) {
+        console.log("err", error)
+    }
 }
 
-const deleteQuestion = async () => {
-
+exports.deleteOption = async (id) => {
+    try {
+        let res = await pool.query('DELETE FROM option WHERE id ($1)', id)
+        console.log("poistettiin vastausvaihtoehto")
+    } catch (error) {
+        console.log("err", error)
+    }
 }
+
+exports.updateOption = async (values) => {
+    try {
+        let res = await pool.query('INSERT INTO option (text) VALUES ($1) WHERE question_id ($2)', values)
+        console.log("lisättiin tentti")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+//VASTAUKSET
+
+exports.getAnswer = async (id) => {
+    try {
+        let res = await pool.query('SELECT * FROM answer WHERE user_id ($1)', id)
+        console.log("haettiin kysymys")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
 
 /*
 module.exports = {}
 */
 
-exports.getQuizzes = getQuizzes
-exports.addQuiz = addQuiz

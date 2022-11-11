@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const createError = require("http-errors");
+const express = require("express");
+const app = express();
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-export default App;
+
+
+const login = require("./login.js")
+const user = require("./user.js")
+const home = require("../routes/home.js")
+const result = require("./result.js")
+const login = require("./login.js")
+const quiz = require("./quiz.js");
+const question = require("./question.js")
+const answer = require("./answer.js")
+const option = require("./option.js")
+const catalogRouter = require("./routes/catalog")
+const indexRouter = require("./routes/index");
+
+app.use("/", indexRouter);
+app.use("/catalog", catalogRouter)
+
+app.use("/login", login)
+app.use("/home", home)
+app.use("/quiz", quiz);
+
+module.exports = app;
