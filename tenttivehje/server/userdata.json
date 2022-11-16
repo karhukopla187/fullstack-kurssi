@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": 1,
+        "username":"",
+        "password": false,
+        "isAdmin": false,
+        "name": ""
+    }
+}

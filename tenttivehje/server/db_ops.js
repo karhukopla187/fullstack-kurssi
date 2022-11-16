@@ -10,13 +10,30 @@ const pool = new Pool({
 })
 
 
+
+
+//KÄYTTÄJÄ
+
+exports.getUser = async (id) => {
+    try {
+        let res = await pool.query('SELECT FROM user WHERE id ($1)', id)
+        console.log("haettiin käyttäjä")
+        return res
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+
+
+
+
 //TENTIT
 
 exports.getQuizzes = async () => {
     try {
         let res = await pool.query('SELECT * FROM quiz')
         console.log("haettiin tentit")
-        return res
+        return res.rows
     } catch (error) {
         console.log("err", error)
     }
@@ -60,19 +77,6 @@ exports.updateQuiz = async (values) => {
 
 
 
-//KÄYTTÄJÄ
-
-exports.getUser = async (id) => {
-    try {
-        let res = await pool.query('SELECT FROM user WHERE id ($1)', id)
-        console.log("haettiin käyttäjä")
-        return res
-    } catch (error) {
-        console.log("err", error)
-    }
-}
-
-
 
 //TULOKSET
 
@@ -85,17 +89,15 @@ exports.getResults = async () => {
         console.log("err", error)
     }
 }
-
 exports.getResult = async (id) => {
     try {
         let res = await pool.query('SELECT FROM result WHERE id ($1)', id)
-        console.log("haettiin tulokset")
+        console.log("haettiin tulos")
         return res
     } catch (error) {
         console.log("err", error)
     }
 }
-
 exports.deleteResult = async (id) => {
     try {
         let res = await pool.query('DELETE FROM result WHERE id ($1)', id)
@@ -104,7 +106,13 @@ exports.deleteResult = async (id) => {
         console.log("err", error)
     }
 }
-
+exports.addResult = async (id) => {
+    try {
+        let res = await pool.query('INSERT INTO result ')
+    } catch (error){
+        console.log("err",error)
+    }
+}
 
 
 //KYSYMYKSET
@@ -117,7 +125,6 @@ exports.getQuestions = async (quizId) => {
         console.log("err", error)
     }
 }
-
 exports.addQuestion = async (values) => {
     try {
         let res = await pool.query('INSERT INTO question (text) VALUES ($1) WHERE id ($2)', values)
@@ -126,7 +133,6 @@ exports.addQuestion = async (values) => {
         console.log("err", error)
     }
 }
-
 exports.deleteQuestion = async (id) => {
     try {
         let res = await pool.query('DELETE FROM question WHERE id ($1)', id)
@@ -135,7 +141,6 @@ exports.deleteQuestion = async (id) => {
         console.log("err", error)
     }
 }
-
 exports.updateQuestion = async (values) => {
     try {
         let res = await pool.query('INSERT INTO question (text) VALUES ($1) WHERE id ($2)', values)
