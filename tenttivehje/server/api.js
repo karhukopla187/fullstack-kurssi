@@ -22,6 +22,15 @@ app.get('/', (req, res) => {
     res.status(200).send(data)
 })
 
+
+//KIRJAUTUMINEN
+
+router.route('/login'), get(async (req, res) => {
+    let data = db.login()
+    res.status(200).json(data)
+})
+
+
 //KÄYTTÄJÄ
 
 router.route('/user'), get(async (req, res) => {
@@ -111,6 +120,7 @@ router.route('/results/:resultId').get(async (req, res) => {
         res.status(200)
 })
 
+app.use(router)
 
 
 app.listen(port, () => {

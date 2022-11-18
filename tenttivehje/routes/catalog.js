@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const quizController = require("../controllers/quiz_ctrl");
-const quizInstanceController = require("../controllers/quiz_instance_ctrl");
 
 // GET catalog home page.
 router.get("/", quizController.index);
@@ -11,10 +10,10 @@ router.get("/", quizController.index);
 //QUIZ ROUTES
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
-router.get("/quiz/create", quizController.quiz_create_get);
+router.route("/quiz/create", quizController.quiz_create_get);
 
 router.post("/quiz/create", quizController.quiz_create_post);
-x
+
 router.get("/quiz/:id/delete", quizController.quiz_delete_get);
 
 router.post("/quiz/:id/delete", quizController.quiz_delete_post);

@@ -1,5 +1,5 @@
 import './App.css';
-import Answer from './answerf'
+import Answer from './answer_view'
 
 const Question = (props) => {
   return (
