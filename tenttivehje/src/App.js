@@ -3,7 +3,24 @@ import Quiz from './quiz_instancef';
 import QuizCollection from './quizf';
 import { useState, useReducer, useEffect } from "react"
 
+const express = require('express');
+const app = express();
+const port = 3000
+
+app.set('view engine', 'ejs');
+//Routes
+app.use('/', require('./routes/login_routes'));
+
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`)
+})
+
+
+/*
 const App = () => {
+
+
 
   const [quizID, setQuiz] = useState(0)
 
@@ -123,7 +140,6 @@ const App = () => {
       timeAlert()
     }
   },[appD])
-  */
 
 
   useEffect(() => {
@@ -154,4 +170,4 @@ const App = () => {
   );
 }
 
-export default App;
+*/

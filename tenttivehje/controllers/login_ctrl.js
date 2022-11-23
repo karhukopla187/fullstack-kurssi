@@ -1,15 +1,18 @@
+require('dotenv').config()
+
 const bodyparser = require('body-parser')
 const fs = require('fs');
 const express = require('express')
 const cors = require('cors');
 const app = express()
-const port = 8080
+const port = 3000
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const db = require("../models/login")
-const front = require("../views/login_view")
+const loginView = require("../views/login_view")
+const signupView = require("../views/register_view")
 const App = require("./App")
 
 //const myPlaintextPassword = 'kissa';
@@ -21,13 +24,29 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 
+app.get('/', (req, res) => {
+    res.status(200).send(data)
+})
 
-exports.signUpPost = async (req, res, next) => {
+
+//asettaa näkymät
+exports.registerView = (req, res) => {
+  res.render("register_view", {
+  } );
+}
+exports.loginView = (req, res) => {
+
+  res.render("login_view", {
+  } );
+}
+
+
+exports.registerPost = async (req, res, next) => {
     const { username, password } = req.body;
     let result;
     try {
         let hashed = await bcrypt.hash(password, saltRounds)
-        result = db.signUp(username, hashed)
+        result = db.register(username, hashed)
     } catch (error) {
         return next(error);
     }
@@ -90,6 +109,27 @@ exports.loginPost = async (req, res, next) => {
     });
 };
 
+
+//OAUTH2,  NODE express passport plugin (gmail, facebook...)
+exports.isAdmin = async (req, res, next) => {
+
+  try {
+    result = db.checkAdmin(req.decoded?.email)
+    let admin = result.rows[0].admin
+    if (admin) { next() } {
+      res.status(403).send("no access!")
+    }
+    //res.send('Tais datan tallennus onnistua')    
+  }
+  catch (e) {
+    res.status(500).send(e)
+  }
+}
+
+
+
+
+
 exports.verifyToken = (req, res, next) => {
 
     const token = req.headers.authorization?.split(' ')[1];
@@ -103,9 +143,15 @@ exports.verifyToken = (req, res, next) => {
     next()
 }
 
+app.use(verifyToken)
+
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
 })
+
+
+
+
 
 /*
 // Handling post request

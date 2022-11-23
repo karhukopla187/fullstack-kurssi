@@ -7,11 +7,25 @@ const port = 3000
 const router = express.Router();
 
 const db = require("../models/quiz")
+const quizView = require("./views/quiz_view")
+const quizzesView = require("./views/quizzes_view")
 
 app.use(cors())
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
+
+
+
+exports.quizzesView = (req, res) => {
+  res.render("quizzes_view", {
+  } );
+}
+exports.quizView = (req, res) => {
+  res.render("quiz_view", {
+  } );
+}
+
 
 exports.quizzesGet = (async (req, res, next) => {
   let data = db.getQuizzes()

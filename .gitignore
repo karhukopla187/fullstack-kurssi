@@ -1,1 +1,5 @@
 HuutoNetAPI.js
+tenttivehje/server/.env
+tenttivehje/server/key.pem
+tenttivehje/server/csr.pem
+tenttivehje/server/cert.pem
