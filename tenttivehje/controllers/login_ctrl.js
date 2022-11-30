@@ -29,16 +29,6 @@ app.get('/', (req, res) => {
 })
 
 
-//asettaa näkymät
-exports.registerView = (req, res) => {
-  res.render("register_view", {
-  } );
-}
-exports.loginView = (req, res) => {
-
-  res.render("login_view", {
-  } );
-}
 
 
 exports.registerPost = async (req, res, next) => {
