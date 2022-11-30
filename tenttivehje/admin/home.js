@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import ReactDOM from "react-dom"
+import Quiz from './quiz'
+import Results from './results'
+
 
 const Home = () => {
-
-    //const db = null
-
 
     const [appD, dispatch] = useReducer(reducer, appData);
 
@@ -14,6 +14,13 @@ const Home = () => {
             case 'INITIALIZE':
                 return { ...action.payload, dataInitialized: true }
 
+            case 'QUIZZES_CLICKED': {
+
+            }
+
+            case 'RESULTS_CLICKED': {
+
+            }
 
             default:
                 throw new Error("homma kusi");
@@ -27,7 +34,6 @@ const Home = () => {
             dispatch({ type: "INITIALIZE", payload: appData })
 
         } else {
-            console.log("Data luettiin local storagesta")
             dispatch({ type: "INITIALIZE", payload: (JSON.parse(quizData)) })
         }
 
@@ -40,7 +46,6 @@ const Home = () => {
             dispatch({ type: "INITIALIZE", payload: appData })
 
         } else {
-            console.log("Data luettiin local storagesta")
 
             dispatch({ type: "INITIALIZE", payload: (JSON.parse(quizData)) })
         }
@@ -50,8 +55,11 @@ const Home = () => {
     return (
         <div className="app">
             <div className="homescreen">
-                <div className="title">Kirjaudu</div>
-                {isSubmitted ? <div>Kirjauduttiin sisään</div> : renderForm}
+                <div className="title">Tervetuloa</div>
+                <button name ="quizzes" onClick={()=>props.dispatch({type:"QUIZZES_CLICKED", 
+                payload:{quizIndex:props.quizIndex,quizCollectionIndex:props.quizCollectionIndex}})}>Tentit</button>
+                <button name ="results" onClick={()=>props.dispatch({type:"RESULTS_CLICKED", 
+                payload:{quizIndex:props.quizIndex,quizCollectionIndex:props.quizCollectionIndex}})}>Tulokset</button>
             </div>
         </div>
     )

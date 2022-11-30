@@ -1,16 +1,16 @@
-import React, { useState } from "react"
+import React, { useReducer, useEffect, useState } from "react"
 import ReactDOM from "react-dom"
+import Question from './question';
 const quizController = require ('../controllers/quiz_ctrl')
 const quesController = require ('../controllers/question_ctrl')
 
-const Quiz = () => {
+const Quiz = (props) => {
 
 
     const [appD, dispatch] = useReducer(reducer, appData);
 
     function reducer(state, action) {
         switch (action.type) {
-
 
             case 'QUIZ_NAME_CHANGED': {
                 console.log("kyselyn nimi muutettu", action)
@@ -20,7 +20,7 @@ const Quiz = () => {
                 return stateCopy
             }
 
-            case 'ADD_QUESTION': {
+            case 'QUESTION_ADDED': {
                 console.log("kysymys lisätty", action)
                 const stateCopy = { ...state }
                 stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({
@@ -29,9 +29,15 @@ const Quiz = () => {
                 return stateCopy
             }
 
-            case 'DELETE_QUESTION': {
+            case 'QUESTION_CHANGED': {
+                const stateCopy = {...state}
+                stateCopy.quizzes[action.payload.]
+            }
+
+            case 'QUESTION_DELETED': {
                 //quesController.
             }
+
         }
 
         return (
