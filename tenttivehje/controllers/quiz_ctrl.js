@@ -17,14 +17,6 @@ app.use(bodyparser.json())
 
 
 
-exports.quizzesView = (req, res) => {
-  res.render("quizzes_view", {
-  } );
-}
-exports.quizView = (req, res) => {
-  res.render("quiz_view", {
-  } );
-}
 
 
 exports.quizzesGet = (async (req, res, next) => {

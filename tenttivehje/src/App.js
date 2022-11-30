@@ -2,11 +2,14 @@ import './App.css';
 import Quiz from './quiz_instancef';
 import QuizCollection from './quizf';
 import { useState, useReducer, useEffect } from "react"
+import User from '../views/user_view';
 
+const axios = require('axios');
 const express = require('express');
 const app = express();
 const port = 3000
 
+/*
 app.set('view engine', 'ejs');
 //Routes
 app.use('/', require('./routes/login_routes'));
@@ -15,15 +18,14 @@ app.use('/', require('./routes/login_routes'));
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
 })
+*/
 
-
-/*
 const App = () => {
 
 
 
   const [quizID, setQuiz] = useState(0)
-
+/*
   let question1 = { q: "Kysymys 1", a: ["vastaus 1", "vastaus 2", "vastaus 3"] }
   let question2 = { q: "Kysymys 2", a: ["vastaus 4", "vastaus 5", "vastaus 6"] }
   let question3 = { q: "Kysymys 3", a: ["vastaus 7", "vastaus 8", "vastaus 9"] }
@@ -48,8 +50,24 @@ const App = () => {
   }
 
   //let quizzes = { quizList: [quiz1, quiz2] }
+*/
 
   const [appD, dispatch] = useReducer(reducer, appData);
+
+
+  async function getUser() {
+    try {
+      const response = await axios.get('/user', {
+        params: {
+          ID: user.id
+        }
+
+      }),
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 
 
   function reducer(state, action) {
@@ -81,7 +99,8 @@ const App = () => {
       case 'ADD_QUESTION': {
         console.log("kysymys lisätty", action)
         const stateCopy = { ...state }
-        stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({ q: "uusi kysymys", a: ["uv1", "uv2", "uv3"] })
+        stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({ 
+          q: "uusi kysymys", a: ["uv1", "uv2", "uv3"] })
         return stateCopy
       }
 
@@ -117,30 +136,6 @@ const App = () => {
 
   }, []);
 
-  /*
-  function timeAlert(){
-    clearTimeout(timer)
-    setTimer(setTimeout(fuction(){ alert("alert"); }, 10000));
-  }
-  
-  function stopTimer() {
-    console.log("stop")
-    clearTimeout(timer)
-  }
-  
-  useEffect(() => {
-    console.log("muutos")
-    timeAlert()
-  },  [appD]
-  
-  //timer
-  useEffect(() => {
-    if (quizData == null) {
-      console.log("muutos")
-      timeAlert()
-    }
-  },[appD])
-
 
   useEffect(() => {
 
@@ -153,6 +148,30 @@ const App = () => {
     }
   }, [appD.save]);
 
+return (
+  <div>
+    <div className='header'>
+    <div className='login'>
+        <p>Syötä käyttäjätunnus ja salasana kirjautuaksesi sisään</p>
+        <label for="username">Tunnus:</label>
+        <input type="text" id="username" onChange={(event)=>
+        
+        }
+        />
+        <p>Ei käyttäjätunnusta? Rekisteröidy:</p>
+        <button onClick={() => dispatch
+
+        
+    </div>
+    </div>
+  </div>
+)
+
+
+
+export default App
+
+/*
   return (
     <div>
       <div className='header'>
@@ -168,6 +187,4 @@ const App = () => {
       </div>
     </div>
   );
-}
-
-*/
+}*/
