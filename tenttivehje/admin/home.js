@@ -15,7 +15,7 @@ const Home = () => {
                 return { ...action.payload, dataInitialized: true }
 
             case 'QUIZZES_CLICKED': {
-
+                
             }
 
             case 'RESULTS_CLICKED': {
