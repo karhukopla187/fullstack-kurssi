@@ -20,7 +20,7 @@ const Answer = (props) => {
             }
 
             case 'EDIT_ANSWER': {
-
+                
             }
 
             case 'ANSWER_EDITED': {

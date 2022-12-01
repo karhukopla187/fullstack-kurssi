@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import ReactDOM from "react-dom"
 import "./register.css"
-const db = require("../controllers/login")
+const db = require("../controllers/login_ctrl")
 
 
 function Register() {
@@ -9,7 +9,7 @@ function Register() {
   const [errorMessages, setErrorMessages] = useState({})
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const userInfo = []
+  const userInfo = db.loginPost()
   const isAdmin = false
 
   const errors = {

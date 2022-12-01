@@ -17,16 +17,23 @@ const Question = (props) => {
                 console.log("kysymys lisätty", action)
                 const stateCopy = { ...state }
                 stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({
-                    q: "uusi kysymys", a: ["uv1", "uv2", "uv3"]
+                    
                 })
                 return stateCopy
             }
 
             case 'QUESTION_CHANGED': {
-
+                const stateCopy = { ...state }
+                stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({
+                    
+                })
+                return stateCopy
             }
 
             case 'QUESTION_DELETED': {
+                const stateCopy = { ...state }
+                quesController.
+                return stateCopy
             }
 
         }
