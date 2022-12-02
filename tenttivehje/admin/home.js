@@ -8,6 +8,27 @@ const Home = () => {
 
     const [appD, dispatch] = useReducer(reducer, appData);
 
+    const [response, setResponse] = useState(null)
+
+	const fetchQuizzes = async () => {
+		try {
+			const res = await axios.get(`https://localhost:3000/quizzes`)
+			setResponse(res.data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+    const fetchResults = async () => {
+		try {
+			const res = await axios.get(`https://localhost:3000/results`)
+			setResponse(res.data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+
     function reducer(state, action) {
         switch (action.type) {
 

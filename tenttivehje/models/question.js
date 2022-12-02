@@ -24,18 +24,18 @@ exports.addQuestion = async (values) => {
         console.log("err", error)
     }
 }
-exports.deleteQuestion = async (id) => {
-    try {
-        let res = await pool.query('DELETE FROM question WHERE id ($1)', id)
-        console.log("poistettiin tentti")
-    } catch (error) {
-        console.log("err", error)
-    }
-}
 exports.updateQuestion = async (values) => {
     try {
         let res = await pool.query('INSERT INTO question (text) VALUES ($1) WHERE id ($2)', values)
         console.log("lisättiin tentti")
+    } catch (error) {
+        console.log("err", error)
+    }
+}
+exports.deleteQuestion = async (id) => {
+    try {
+        let res = await pool.query('DELETE FROM question WHERE id ($1)', id)
+        console.log("poistettiin tentti")
     } catch (error) {
         console.log("err", error)
     }

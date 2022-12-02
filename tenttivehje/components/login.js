@@ -13,9 +13,26 @@ function Login() {
   const userInfo = []
   const isAdmin = false
 
+  const login = async () => {
+
+    
+
+    try {
+      axios.post("https://localhost:3000/login", {
+      email: email,
+      password: password
+    })
+    .then((response) => {
+      console.log(response);
+    });
+  } catch (err) {
+    console.log(err)
+  }
+  }
+
   const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
+    uname: "väärä käyttäjätunnus",
+    pass: "väärä salasana"
   }
   var { uname, pass } = document.forms[0];
 

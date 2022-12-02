@@ -5,11 +5,19 @@ const quesController = require ('../controllers/question_ctrl')
 
 const Results = (props) => {
 
+    
+    const resultData =  await axios.get
+
+    
 
     const [appD, dispatch] = useReducer(reducer, appData);
 
     function reducer(state, action) {
         switch (action.type) {
+            case 'GET_RESULT': {
+
+            }
+            case ''
 
         }
 
@@ -17,8 +25,8 @@ const Results = (props) => {
             <div>
               <div>Tenttien tulokset </div>
         
-              <div> {results.map((index) => <Question dispatch={props.dispatch}
-                  quizCollectionIndex={props.quizCollectionIndex} 
+              <div> {results.map((index) => <Result dispatch={props.dispatch}
+                  resultIndex={props.resultIndex} 
                   questionIndex={index} 
                   quizIndex={props.quizIndex} 
                   question={question}/> )} </div>

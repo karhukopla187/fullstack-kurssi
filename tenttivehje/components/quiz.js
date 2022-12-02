@@ -1,11 +1,15 @@
 import React, { useReducer, useEffect, useState } from "react"
 import ReactDOM from "react-dom"
 import Question from './question';
+import axios from 'axios'
 const quizController = require ('../controllers/quiz_ctrl')
 const quesController = require ('../controllers/question_ctrl')
 
 const Quiz = (props) => {
 
+    const quizdata = async () => {
+        try
+    }
 
     const [appD, dispatch] = useReducer(reducer, appData);
 
@@ -20,21 +24,27 @@ const Quiz = (props) => {
                 return stateCopy
             }
 
+            case 'QUIZ_DELETED': {
+                quizController.quizDelete()
+            }
+
             case 'QUESTION_ADDED': {
                 console.log("kysymys lisätty", action)
                 const stateCopy = { ...state }
                 stateCopy.quizzes[action.payload.quizCollectionIndex].quizList[action.payload.quizIndex].questions.push({
-                    q: "uusi kysymys", a: ["uv1", "uv2", "uv3"]
+                    
                 })
                 return stateCopy
             }
 
             case 'QUESTION_CHANGED': {
+                console.log("kysymys muutettu")
                 const stateCopy = {...state}
                 stateCopy.quizzes[action.payload.]
             }
 
             case 'QUESTION_DELETED': {
+                console.log("kysymys poistettu")
                 //quesController.
             }
 
@@ -47,20 +57,16 @@ const Quiz = (props) => {
               <input type="text" onChange={(event)=>
               {props.dispatch({type:"QUIZ_NAME_CHANGED",
                 payload:{
-                  name:event.target.value,
-                  questionIndex:props.questionIndex,
-                  quizCollectionIndex:props.quizCollectionIndex,
-                  quizIndex:props.quizIndex}
+                  }
                 })}}  
                 value = {props.quiz.name}/>
         
               <div> {props.quiz.questions.map((question,index) => <Question dispatch={props.dispatch}
-                  quizCollectionIndex={props.quizCollectionIndex} 
                   questionIndex={index} 
                   quizIndex={props.quizIndex} 
                   question={question}/> )} </div>
               <button onClick={()=>props.dispatch({type:"ADD_QUESTION", 
-                payload:{quizIndex:props.quizIndex,quizCollectionIndex:props.quizCollectionIndex}})}>Lisää kysymys</button>
+                payload:{quizIndex:props.quizIndex,}})}>Lisää kysymys</button>
             </div>
           )
     }
