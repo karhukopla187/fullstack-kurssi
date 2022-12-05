@@ -25,32 +25,6 @@ const App = () => {
 
 
   const [quizID, setQuiz] = useState(0)
-/*
-  let question1 = { q: "Kysymys 1", a: ["vastaus 1", "vastaus 2", "vastaus 3"] }
-  let question2 = { q: "Kysymys 2", a: ["vastaus 4", "vastaus 5", "vastaus 6"] }
-  let question3 = { q: "Kysymys 3", a: ["vastaus 7", "vastaus 8", "vastaus 9"] }
-  let question4 = { q: "Kysymys 4", a: ["vastaus 10", "vastaus 11", "vastaus 12"] }
-
-  let quiz1 = {
-    name: "Kysely 1",
-    questionsAmount: 2,
-    questions: [question1, question2]
-  }
-
-  let quiz2 = {
-    name: "Kysely 2",
-    questionsAmount: 2,
-    questions: [question3, question4]
-  }
-
-  let appData = {
-    quizzes: [{ quizList: [quiz1, quiz2] }],
-    save: false,
-    dataInitialized: false
-  }
-
-  //let quizzes = { quizList: [quiz1, quiz2] }
-*/
 
   const [appD, dispatch] = useReducer(reducer, appData);
 
