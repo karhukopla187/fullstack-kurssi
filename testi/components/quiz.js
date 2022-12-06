@@ -18,15 +18,9 @@ function reducer(state, action) {
       }
       case 'QUESTION__EDITED': {
         console.log("muutettiin kysymys", action)
-        const stateCopy = { ...state }
-        stateCopy.[action.payload.index].name = action.payload.name
-        return stateCopy
       }
       case 'QUESTION_ADDED': {
         console.log("lisättiin kysymys", action)
-        const stateCopy = { ...state }
-        stateCopy.[action.payload.index].name = action.payload.name
-        return stateCopy
       }
       case 'QUESTION_DELETED': {
         console.log("poistettiin kysymys", action)
