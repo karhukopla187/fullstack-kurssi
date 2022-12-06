@@ -15,7 +15,6 @@ const loginView = require("../views/login_view")
 const signupView = require("../views/register_view")
 const App = require("./App")
 
-//const myPlaintextPassword = 'kissa';
 
 app.use(express.json());
 
@@ -65,7 +64,7 @@ exports.loginPost = async (req, res, next) => {
     let existingUser;
     let passwordMatch = false;
     try {
-        let result = db.login(username)
+        let result = db.login(username,)
         existingUser = { password: result.rows[0].password, username: result.rows[0].username, id: result.rows[0].id };
         passwordMatch = await bcrypt.compare(password, existingUser.password)
     } catch {
@@ -109,7 +108,7 @@ exports.isAdmin = async (req, res, next) => {
     if (admin) { next() } {
       res.status(403).send("no access!")
     }
-    //res.send('Tais datan tallennus onnistua')    
+    res.send('data tallennettiin')    
   }
   catch (e) {
     res.status(500).send(e)
