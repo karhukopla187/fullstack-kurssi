@@ -40,7 +40,7 @@ const Answer = (props) => {
             <div name ="ans-editor">
                 <button value = "poista" onClick={() => props.dispatch({
                     type: "ANSWER_DELETED",
-                    payload: { quizIndex: props.quizIndex, quizCollectionIndex: props.quizCollectionIndex }})}>Editoi
+                    payload: { quizIndex: props.quizIndex }})}>Editoi
                 </button>
             </div>
             <input type='checkbox'></input>

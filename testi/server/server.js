@@ -6,6 +6,9 @@ app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`)
 });
 
+app.get("/", (req, res) => {
+    res.json({})
+})
 
 app.get("/:quiz", (req, res) => {
     res.json({})
@@ -24,10 +27,6 @@ app.get("/results", (req, res) => {
 })
 
 app.get("/:user", (req, res) => {
-    res.json({})
-})
-
-app.get("/", (req, res) => {
     res.json({})
 })
 
