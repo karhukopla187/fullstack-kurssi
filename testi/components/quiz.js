@@ -18,6 +18,7 @@ function reducer(state, action) {
       }
       case 'QUESTION__EDITED': {
         console.log("muutettiin kysymys", action)
+        
       }
       case 'QUESTION_ADDED': {
         console.log("lisättiin kysymys", action)
