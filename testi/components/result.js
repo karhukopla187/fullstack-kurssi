@@ -3,6 +3,12 @@ import Question from './question';
 const db = require("../server/db")
 
 
+
+/*
+
+r
+*/
+
 function reducer(state, action) {
     switch (action.type) {
   
@@ -19,6 +25,8 @@ const Result = (props) => {
   return (
     <div>
       <div> {props.result.name} </div>
+
+
 
       <div> {props.result.questions.map((question,index) => <Question dispatch={props.dispatch}
           resultIndex={index} 

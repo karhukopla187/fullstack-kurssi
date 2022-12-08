@@ -12,7 +12,7 @@ const pool = new Pool({
 exports.signUp = async (username, hashed) => {
     try {
         let res = await pool.query("INSERT INTO users (username, password) VALUES ($1,$2) RETURNING id",[username, hashed])
-        return res
+        return res.data
     } catch (error) {
         console.log("err",error)
     }
@@ -21,7 +21,7 @@ exports.signUp = async (username, hashed) => {
 exports.login = async (username) => {
     try {
         let res = await pool.query ("SELECT * FROM users WHERE username ($1)",[username])
-        return res
+        return res.data
     } catch (error) {
         console.log("err",error)
     }
@@ -34,7 +34,7 @@ exports.getUser = async (id) => {
     try {
         let res = await pool.query('SELECT FROM user WHERE id ($1)', id)
         console.log("haettiin käyttäjä")
-        return res
+        return res.data
     } catch (error) {
         console.log("err", error)
     }
@@ -100,7 +100,7 @@ exports.getResults = async () => {
     try {
         let res = await pool.query('SELECT * FROM result')
         console.log("haettiin käyttäjän tulokset")
-        return res
+        return res.data
     } catch (error) {
         console.log("err", error)
     }
@@ -109,7 +109,7 @@ exports.getResult = async (id) => {
     try {
         let res = await pool.query('SELECT FROM result WHERE id ($1)', id)
         console.log("haettiin tulos")
-        return res
+        return res.data
     } catch (error) {
         console.log("err", error)
     }

@@ -5,7 +5,11 @@ import ReactDOM from "react-dom"
 const Answer = (props) => {
 
     const editAnswer = false
+/*
+    const addPoint()
 
+
+    */
     const [appD, dispatch] = useReducer(reducer, appData);
 
     function showEditor() {
@@ -15,20 +19,21 @@ const Answer = (props) => {
     function reducer(state, action) {
         switch (action.type) {
 
-            case 'ANSWER_ADDED': {
+            case 'ANSWER_PICKED': {
+                //a
+            }
 
+            case 'ANSWER_ADDED': {
             }
 
             case 'EDIT_ANSWER': {
-                
+            
             }
 
             case 'ANSWER_EDITED': {
-
             }
 
             case 'ANSWER_DELETED': {
-
             }
 
         }

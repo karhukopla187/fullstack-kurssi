@@ -70,7 +70,7 @@ function Register() {
 
   return (
     <div className="app">
-      <div className="login-form">
+      <div className="register-form">
         <div className="title">Rekisteröidy</div>
         {isSubmitted ? <div>Tunnus rekisteröitiin, kirjaudu sisään </div> : renderForm}
       </div>
