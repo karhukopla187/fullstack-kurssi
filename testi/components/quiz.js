@@ -3,13 +3,20 @@ import Question from './question';
 const db = require("../server/db")
 
 
+
+const result = {}
+
 function reducer(state, action) {
     switch (action.type) {
   
-        case 'ADD_QUIZ': {
-            console.log("lisättiin uusi tentti")
+
+      case 'QUIZ_FINISHED': {
+        db.addResult()
+      }
+      case 'ADD_QUIZ': {
+        console.log("lisättiin uusi tentti")
             
-        }
+      }
       case 'QUIZ_NAME_CHANGED': {
         console.log("muutettiin tentin nimi", action)
         const stateCopy = { ...state }

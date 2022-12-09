@@ -8,22 +8,31 @@ const Answer = (props) => {
 /*
     const addPoint()
 
-
     */
+
+    const result = {quizId, question, answer, totalScore}
+
     const [appD, dispatch] = useReducer(reducer, appData);
 
     function showEditor() {
 
     }
 
+    function checkRightAnswer() {
+        if (props.answer.isCorrect = true) {
+            props.quizIndex
+        }
+    }
+
     function reducer(state, action) {
         switch (action.type) {
 
             case 'ANSWER_PICKED': {
-                //a
+                checkRightAnswer()
             }
 
             case 'ANSWER_ADDED': {
+
             }
 
             case 'EDIT_ANSWER': {
@@ -49,7 +58,7 @@ const Answer = (props) => {
                 </button>
             </div>
             <input type='checkbox'></input>
-            <div> {props.answer} </div>
+            <div> {props.quizIndex.question.answer} </div>
         </div>
     )
 }

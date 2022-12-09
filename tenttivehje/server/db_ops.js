@@ -92,8 +92,6 @@ exports.updateQuiz = async (values) => {
 
 
 
-
-
 //TULOKSET
 
 exports.getResults = async () => {
