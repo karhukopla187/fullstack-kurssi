@@ -1,6 +1,6 @@
 import './App.css';
 import Question from './question';
-const db = require("../server/db")
+const db = require("../server/db_ops")
 
 
 

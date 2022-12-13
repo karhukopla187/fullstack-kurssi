@@ -1,7 +1,8 @@
 import './styles.css';
 import { useState, useReducer, useEffect } from "react"
 import axios from 'axios'
-const db = require("../server/db")
+//const db = require("../server/db")
+import db from '../server/db'
 
 const App = () => {
   const [data, setData] = useState(null);
