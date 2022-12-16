@@ -8,3 +8,6 @@ testitestit/package.json
 testitestit/package-lock.json
 testitestit/.gitignore
 .gitignore
+testitestit/src/App.js
+testitestit/src/App.js
+testitestit/src/App.test.js

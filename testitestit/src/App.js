@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from "react"
-import axios from 'axios'
+
 const URL = 'http://hn.algolia.com/api/v1/search'
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <div className="container">
         <label>
-          <input type="checkbox" data-testid="cbShowHide" checked={showElement} onChange={e => setShowElement(e.target.checked)} />
+          <input type="checkbox" data-testid="cb" checked={showElement} onChange={e => setShowElement(e.target.checked)} />
           <span>näytä/piilota</span>
         </label>
         {showElement && <div className="box" data-testid="box">klikattu</div>}

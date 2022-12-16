@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import ReactDOM from "react-dom"
-import Quiz from './quiz'
+import Quiz from './controllers/quiz_ctrl'
 import Results from './results'
 
 
@@ -72,8 +72,6 @@ const Home = () => {
         }
 
     }, []);
-
-    //
 
     return (
         <div className="app">
