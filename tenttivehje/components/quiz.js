@@ -8,7 +8,7 @@ const quesController = require ('../controllers/question_ctrl')
 const Quiz = (props) => {
 
     const quizdata = async () => {
-        try
+        //
     }
 
     const [appD, dispatch] = useReducer(reducer, appData);
@@ -36,6 +36,8 @@ const Quiz = (props) => {
                 })
                 return stateCopy
             }
+
+
 
             case 'QUESTION_CHANGED': {
                 console.log("kysymys muutettu")

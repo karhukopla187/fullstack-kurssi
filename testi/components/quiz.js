@@ -4,7 +4,7 @@ const db = require("../server/db_ops")
 
 
 
-const result = {}
+//const result = {}
 
 function reducer(state, action) {
     switch (action.type) {
