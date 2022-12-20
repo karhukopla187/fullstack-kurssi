@@ -4,8 +4,6 @@ const db = require("../server/db_ops")
 
 
 
-//const result = {}
-
 function reducer(state, action) {
     switch (action.type) {
   
@@ -23,7 +21,7 @@ function reducer(state, action) {
         stateCopy.[action.payload.index].name = action.payload.name
         return stateCopy
       }
-      case 'QUESTION__EDITED': {
+      case 'QUESTION_EDITED': {
         console.log("muutettiin kysymys", action)
         
       }

@@ -47,7 +47,6 @@ const Home = () => {
                 throw new Error("homma kusi");
         }
     }
-
     useEffect(() => {
         const quizData = localStorage.getItem('quizdata');
         if (quizData == null) {
@@ -73,7 +72,6 @@ const Home = () => {
 
     }, []);
 
-    //
 
     return (
         <div className="app">

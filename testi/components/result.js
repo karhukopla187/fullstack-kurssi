@@ -3,12 +3,6 @@ import Question from './question';
 const db = require("../server/db")
 
 
-
-/*
-
-r
-*/
-
 function reducer(state, action) {
     switch (action.type) {
   
