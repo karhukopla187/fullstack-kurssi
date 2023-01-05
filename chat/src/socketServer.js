@@ -21,6 +21,7 @@ var users = []
 
 var server = net.createServer(function (socket) {
 
+	//karvalakki nimet välillisesti
 	var name
 	var nameGiven = false
 
@@ -37,8 +38,7 @@ var server = net.createServer(function (socket) {
 
 	socket.on('data', function (data) {
 
-
-		//karvalakki nimet
+		//nimeäminen
 		if (nameGiven == false) {
 			name = data
 			nameGiven = true
@@ -51,6 +51,7 @@ var server = net.createServer(function (socket) {
 					item.write(data + " on vihdoin täällä")
 				}
 			})
+		//viesti
 		} else {
 				users.forEach((item)=>{
 					//sanafiltteri
